@@ -1,21 +1,26 @@
 import styled from "styled-components";
 
 const Form = styled.form`
+  --invalid: ;
   display: flex;
   width: 100%;
   flex-wrap: nowrap;
   height: 3.7rem;
   padding: 0.5rem;
   padding-inline-start: 1.4rem;
-  gap: 1rem;
   border-radius: 0.6rem;
+
   background-color: ${(props) => props.theme.colors.bg400};
+  color: var(--invalid, ${(props) => props.theme.colors.acc900});
+
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  box-shadow: var(--invalid, rgba(99, 99, 99, 0.2)) 0px 2px 8px 0px;
 
   &:focus-within {
-    outline: 0.02rem solid ${(props) => props.theme.colors.acc900};
+    box-shadow: var(--invalid, ${(props) => props.theme.colors.acc900}) 0px 2px
+      8px 0px;
   }
 
   &:hover {
@@ -23,8 +28,13 @@ const Form = styled.form`
       transform: rotate(90deg);
     }
     &:not(:focus-within) {
-      box-shadow: ${(props) => props.theme.colors.acc900} 1.95px 1.95px 2.6px;
+      box-shadow: var(--invalid, ${(props) => props.theme.colors.acc900}) 1.95px
+        1.95px 2.6px;
     }
+  }
+
+  & > *:not(:last-child) {
+    margin-right: 1rem;
   }
 `;
 
@@ -33,6 +43,7 @@ const FormInput = styled.input`
   flex: 1;
   border: none;
   background-color: transparent;
+  border-radius: 0.5rem;
   outline: none;
   color: ${(props) => props.theme.colors.wrd400};
 
@@ -59,7 +70,7 @@ const FormButton = styled.button`
   text-transform: capitalize;
   font-weight: 600;
 
-  background-color: ${(props) => props.theme.colors.acc900};
+  background-color: var(--invalid, ${(props) => props.theme.colors.acc900});
   color: ${(props) =>
     props.theme.title === "dark"
       ? props.theme.colors.wrd400
@@ -68,7 +79,7 @@ const FormButton = styled.button`
   border-radius: 0.7rem;
 
   &:hover {
-    background-color: ${(props) => props.theme.colors.wrd400};
+    background-color: var(--invalid, ${(props) => props.theme.colors.wrd400});
     color: ${(props) => props.theme.colors.acc900};
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }

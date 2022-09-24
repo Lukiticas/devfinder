@@ -4,10 +4,10 @@ import { ThemeContext } from "styled-components";
 import { UFooterItem, UFooter } from "./UserFooter.styles";
 
 interface UserFooterProps {
-  location: string | null;
-  twitter: string | null;
-  site: string | null;
-  company: string | null;
+  location: string | null | undefined;
+  twitter: string | null | undefined;
+  site: string | null | undefined;
+  company: string | null | undefined;
 }
 
 const UserFooter = ({ location, twitter, site, company }: UserFooterProps) => {
@@ -15,9 +15,14 @@ const UserFooter = ({ location, twitter, site, company }: UserFooterProps) => {
   return (
     <UFooter>
       <UFooterItem className={location ? "" : "disabled"}>
-        <a>
+        <a
+          href={
+            location ? `https://www.google.com/maps/place/${location}` : "#"
+          }
+          target="_blank"
+        >
           <MapPin
-            size="1.4rem"
+            size="1.6rem"
             weight="fill"
             color={location ? colors.wrd400 : colors.wrd600}
           />
@@ -25,9 +30,9 @@ const UserFooter = ({ location, twitter, site, company }: UserFooterProps) => {
         </a>
       </UFooterItem>
       <UFooterItem className={site ? "" : "disabled"}>
-        <a>
+        <a href={site ? site : "#"} target="_blank">
           <Link
-            size="1.4rem"
+            size="1.6rem"
             weight="fill"
             color={site ? colors.wrd400 : colors.wrd600}
           />
@@ -35,9 +40,12 @@ const UserFooter = ({ location, twitter, site, company }: UserFooterProps) => {
         </a>
       </UFooterItem>
       <UFooterItem className={twitter ? "" : "disabled"}>
-        <a>
+        <a
+          href={twitter ? `https://twitter.com/${twitter}` : "#"}
+          target="_blank"
+        >
           <TwitterLogo
-            size="1.4rem"
+            size="1.6rem"
             weight="fill"
             color={twitter ? colors.wrd400 : colors.wrd600}
           />
@@ -47,7 +55,7 @@ const UserFooter = ({ location, twitter, site, company }: UserFooterProps) => {
       <UFooterItem className={company ? "" : "disabled"}>
         <a>
           <Buildings
-            size="1.4rem"
+            size="1.6rem"
             weight="fill"
             color={company ? colors.wrd400 : colors.wrd600}
           />

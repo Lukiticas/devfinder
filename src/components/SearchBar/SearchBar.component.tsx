@@ -1,14 +1,13 @@
 import { MagnifyingGlass } from "phosphor-react";
-import { useState } from "react";
-import { useContext } from "react";
-import { DefaultTheme, ThemeContext } from "styled-components";
+
+import { useState, useContext } from "react";
 import UserContext from "../../store/UserContext";
+
 import { Form, FormButton, FormInput, FormLabel } from "./SearchBar.styles";
 
 const SearchBar = () => {
-  const { colors } = useContext<DefaultTheme>(ThemeContext);
   const [inputValue, setInputValue] = useState("");
-  const { requestUserdataAPI } = useContext(UserContext);
+  const { requestUserdataAPI, isOnError } = useContext(UserContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -22,9 +21,13 @@ const SearchBar = () => {
   };
 
   return (
-    <Form name="username" onSubmit={handleSubmit}>
+    <Form
+      className={isOnError ? "invalid" : ""}
+      name="username"
+      onSubmit={handleSubmit}
+    >
       <FormLabel htmlFor="username">
-        <MagnifyingGlass size={"2rem"} color={colors.acc900} />
+        <MagnifyingGlass size={"2rem"} color="currentColor" />
       </FormLabel>
       <FormInput
         required

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle` 
     /* Box sizing rules */
@@ -7,8 +8,8 @@ const GlobalStyle = createGlobalStyle`
     *::after {
         box-sizing: border-box;
         transition: all 50ms ease-in;
-    transition: color 100ms ease-in;
-    transition: background-color 100ms ease-in;
+        transition: color 100ms ease-in;
+        transition: background-color 100ms ease-in;
     }
 
     /* Remove default margin */
@@ -97,23 +98,53 @@ const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
         display: grid;
         place-items: center;
-        
-
     }
 
-    .app {
-        padding: 1rem;
-        width: clamp(10rem, 100vw, 50rem);
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-
-        @media screen and (max-width: 500px){
-            max-width: 35rem;
-            
-        }
+    .invalid {
+        --invalid: red;
+        animation: shake 100ms alternate
     }
-    
+
+    @keyframes shake {
+
+    10%,
+    90% {
+      transform: translate3d(-2px, 0, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate3d(3px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-5px, 0, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate3d(6px, 0, 0);
+    }
+}
 `;
 
-export { GlobalStyle };
+const AppMain = styled.main`
+  display: flex;
+  flex-direction: column;
+
+  width: clamp(10rem, 100vw, 50rem);
+
+  padding: 1rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  @media screen and (max-width: 500px) {
+    max-width: 35rem;
+  }
+`;
+
+export { GlobalStyle, AppMain };
