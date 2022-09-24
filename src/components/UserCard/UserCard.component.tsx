@@ -25,7 +25,7 @@ const UserCard = () => {
       />
       <UserHeader
         link={userdata?.html_url}
-        data={formatDate(userdata?.created_at as Date)}
+        data={userdata ? formatDate(userdata?.created_at as Date) : Date()}
         login={userdata?.login}
         username={userdata?.name}
       />
