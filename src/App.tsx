@@ -10,6 +10,7 @@ import axios from "axios";
 import OutletProvider from "./store/OutletProvider";
 import Header from "./components/Header/Header.component";
 import UserCard from "./components/UserCard/UserCard.component";
+import DownloadBar from "./components/DownloadBar/DownloadBar.component";
 
 export interface userData {
   login: string;
@@ -85,6 +86,7 @@ const App = () => {
       <AppMain className="app">
         <Header />
         <UserCard />
+        <DownloadBar />
       </AppMain>
     </OutletProvider>
   );

@@ -17,7 +17,7 @@ const UserCard = () => {
   };
 
   return (
-    <UserSection>
+    <UserSection id="user-card">
       <InfoIcon
         src={userdata?.avatar_url}
         alt="icon"
